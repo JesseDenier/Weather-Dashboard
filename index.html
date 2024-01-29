@@ -15,28 +15,22 @@
     <link rel="stylesheet" href="assets/css/style.css" />
     <title>Weather Dashboard</title>
   </head>
-  <body class="container-fluid">
-    <div class="row">
-      <!-- Aside Topper -->
-      <div class="col-3 text-bg-dark"></div>
-      <!-- Header -->
-      <div class="col-9 text-bg-primary text-center p-2">
-        <h1>Weather Dashboard</h1>
-      </div>
-    </div>
+  <body class="row">
     <!-- Aside -->
-    <div class="row">
-      <div class="col-3 text-bg-dark text-center py-1 px-5">
-        <h2>Search for<br />a city:</h2>
-        <input class="col-12 mt-3 rounded" placeholder="Austin" />
-        <button class="col-12 mt-3 text-bg-primary rounded">Search</button>
-        <ul class="list-group my-5">
-          <li class="list-group-item list-group-item-action">Austin</li>
-          <li class="list-group-item list-group-item-action">New York City</li>
-          <li class="list-group-item list-group-item-action">Los Angeles</li>
-        </ul>
-      </div>
-    </div>
+    <aside class="col-3 text-bg-dark text-center py-1 px-5 vh-100">
+      <h2 class="pt-5">Search for<br />a city:</h2>
+      <input class="col-12 mt-3 rounded" placeholder="Austin" />
+      <button class="col-12 mt-3 text-bg-primary rounded">Search</button>
+      <ul class="list-group my-5">
+        <li class="list-group-item list-group-item-action">Austin</li>
+        <li class="list-group-item list-group-item-action">New York City</li>
+        <li class="list-group-item list-group-item-action">Los Angeles</li>
+      </ul>
+    </aside>
+    <!-- Main -->
+    <main class="col-9 p-0">
+      <h1 class="col-12 text-bg-primary text-center p-2">Weather Dashboard</h1>
+    </main>
     <!-- Links Bootstrap JS. -->
     <script
       src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
