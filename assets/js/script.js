@@ -42,31 +42,56 @@ fetch(forecastURL);
 
 // Makes the Forecast API call and then runs a function to populate all HTML elements with data from created JSON file.
 $.getJSON(forecastURL, function (data) {
-  $("#day1Date").text(data.list[4].dt_txt);
+  var date = new Date(data.list[4].dt_txt),
+    yr = date.getFullYear(),
+    month = date.getMonth() + 1,
+    day = date.getDate(),
+    day1Date = month + "/" + day + "/" + yr;
+  $("#day1Date").text(day1Date);
   var day1FTempRounded = Math.round(data.list[4].main.temp);
   $("#day1Temp").text(day1FTempRounded + "°F");
   $("#day1Wind").text(data.list[4].wind.speed + " MPH");
   $("#day1Humidity").text(data.list[4].main.humidity + "%");
 
-  $("#day2Date").text(data.list[12].dt_txt);
+  var date = new Date(data.list[12].dt_txt),
+    yr = date.getFullYear(),
+    month = date.getMonth() + 1,
+    day = date.getDate(),
+    day2Date = month + "/" + day + "/" + yr;
+  $("#day2Date").text(day2Date);
   var day2FTempRounded = Math.round(data.list[12].main.temp);
   $("#day2Temp").text(day2FTempRounded + "°F");
   $("#day2Wind").text(data.list[12].wind.speed + " MPH");
   $("#day2Humidity").text(data.list[12].main.humidity + "%");
 
-  $("#day3Date").text(data.list[20].dt_txt);
+  var date = new Date(data.list[20].dt_txt),
+    yr = date.getFullYear(),
+    month = date.getMonth() + 1,
+    day = date.getDate(),
+    day3Date = month + "/" + day + "/" + yr;
+  $("#day3Date").text(day3Date);
   var day3FTempRounded = Math.round(data.list[20].main.temp);
   $("#day3Temp").text(day3FTempRounded + "°F");
   $("#day3Wind").text(data.list[20].wind.speed + " MPH");
   $("#day3Humidity").text(data.list[20].main.humidity + "%");
 
-  $("#day4Date").text(data.list[28].dt_txt);
+  var date = new Date(data.list[28].dt_txt),
+    yr = date.getFullYear(),
+    month = date.getMonth() + 1,
+    day = date.getDate(),
+    day4Date = month + "/" + day + "/" + yr;
+  $("#day4Date").text(day4Date);
   var day4FTempRounded = Math.round(data.list[28].main.temp);
   $("#day4Temp").text(day4FTempRounded + "°F");
   $("#day4Wind").text(data.list[28].wind.speed + " MPH");
   $("#day4Humidity").text(data.list[28].main.humidity + "%");
 
-  $("#day5Date").text(data.list[36].dt_txt);
+  var date = new Date(data.list[36].dt_txt),
+    yr = date.getFullYear(),
+    month = date.getMonth() + 1,
+    day = date.getDate(),
+    day5Date = month + "/" + day + "/" + yr;
+  $("#day5Date").text(day5Date);
   var day5FTempRounded = Math.round(data.list[36].main.temp);
   $("#day5Temp").text(day5FTempRounded + "°F");
   $("#day5Wind").text(data.list[36].wind.speed + " MPH");
