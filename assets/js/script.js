@@ -51,7 +51,7 @@ function fetchDisplayWeather() {
 }
 
 // Fetches the Open Weather Forecast API.
-function fetchDisplayForecast(city, openWeatherAPI) {
+function fetchDisplayForecast() {
   fetch(
     "http://api.openweathermap.org/data/2.5/forecast?q=" +
       city +
