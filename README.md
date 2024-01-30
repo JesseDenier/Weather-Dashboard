@@ -10,11 +10,10 @@ Here is a screenshot of my completed work as of 1.30.24.
 
 ## Installation
 
-N/A
+No installation necessary. You only need internet access, and to click this link: https://jessedenier.github.io/Weather-Dashboard/
 
 ## Usage
 
-Here is a link to the website: https://jessedenier.github.io/Weather-Dashboard/
 This webpage can be opened and interacted with immediately. Austin Texas is the default city. You can see the current weather in the largest block, as well as get a general idea of the weather based on the background image. Additionally the 5 day forecast is listed below. The city can be changed by either clicking on a city in the aside or typing in a new city and clicking the search button.
 
 ## Credits
