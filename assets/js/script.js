@@ -166,7 +166,6 @@ function fetchDisplayForecast() {
 }
 
 // Search button prepends user input to top of city list and fills out data on main.
-//TODO: Limit list size to 10.
 $("#searchBtn").on("click", function () {
   // Changes the variable city to the user input and populates the main data.
   city = $("#searchInput").val();
