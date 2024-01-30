@@ -1,0 +1,6 @@
+/* Makes it so the aside takes up the full view-width on wide screens. */
+@media (min-width: 768px) {
+  .aside-custom-height {
+    height: 100vh;
+  }
+}
