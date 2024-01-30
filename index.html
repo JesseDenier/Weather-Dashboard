@@ -11,25 +11,104 @@
       integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
       crossorigin="anonymous"
     />
+    <!-- Links jQuery JS. -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!-- Links custom CSS. -->
     <link rel="stylesheet" href="assets/css/style.css" />
     <title>Weather Dashboard</title>
   </head>
-  <body class="row">
+  <!-- Sets up the container for the Aside and Main. -->
+  <body class="row vw-100 g-0">
     <!-- Aside -->
-    <aside class="col-3 text-bg-dark text-center py-1 px-5 vh-100">
-      <h2 class="pt-5">Search for<br />a city:</h2>
-      <input class="col-12 mt-3 rounded" placeholder="Austin" />
-      <button class="col-12 mt-3 text-bg-primary rounded">Search</button>
-      <ul class="list-group my-5">
-        <li class="list-group-item list-group-item-action">Austin</li>
-        <li class="list-group-item list-group-item-action">New York City</li>
-        <li class="list-group-item list-group-item-action">Los Angeles</li>
-      </ul>
+    <aside class="col-3">
+      <div class="col-12 text-bg-dark text-center py-1 px-5 vh-100">
+        <h2 class="pt-5">Search for<br />a city:</h2>
+        <input
+          id="searchInput"
+          class="col-12 mt-3 rounded"
+          placeholder="Great Barrington"
+        />
+        <button id="searchBtn" class="col-12 mt-3 text-bg-primary rounded">
+          Search
+        </button>
+        <ul id="cityList" class="list-group my-5">
+          <li class="list-group-item list-group-item-action">Austin</li>
+          <li class="list-group-item list-group-item-action">New York City</li>
+          <li class="list-group-item list-group-item-action">Denver</li>
+        </ul>
+      </div>
     </aside>
     <!-- Main -->
-    <main class="col-9 p-0">
+    <main class="col-9">
       <h1 class="col-12 text-bg-primary text-center p-2">Weather Dashboard</h1>
+      <h2 class="text-center p-2">Current Weather</h2>
+      <!-- Holds current card.-->
+      <article class="row col-12 g-0 justify-content-center">
+        <div class="card col-9 text-bg-dark">
+          <div class="card-body">
+            <h5 class="card-title"><span id="currentCity"></span>, Today</h5>
+            <p class="card-text">
+              Temp: <span id="currentTemp"></span><br />Wind:
+              <span id="currentWind"></span><br />Humidity:
+              <span id="currentHumidity"></span>
+            </p>
+          </div>
+        </div>
+      </article>
+      <h2 class="text-center p-2">5-Day Forecast (Noon)</h2>
+      <!-- Holds forecast cards. -->
+      <article class="row col-12 g-0 justify-content-center">
+        <div class="card col-2 text-bg-dark mx-1">
+          <div class="card-body">
+            <h5 id="day1Date" class="card-title text-center"></h5>
+            <p class="card-text">
+              Temp: <span id="day1Temp"></span><br />Wind:
+              <span id="day1Wind"></span><br />Humidity:
+              <span id="day1Humidity"></span>
+            </p>
+          </div>
+        </div>
+        <div class="card col-2 text-bg-dark mx-1">
+          <div class="card-body">
+            <h5 id="day2Date" class="card-title text-center"></h5>
+            <p class="card-text">
+              Temp: <span id="day2Temp"></span><br />Wind:
+              <span id="day2Wind"></span><br />Humidity:
+              <span id="day2Humidity"></span>
+            </p>
+          </div>
+        </div>
+        <div class="card col-2 text-bg-dark mx-1">
+          <div class="card-body">
+            <h5 id="day3Date" class="card-title text-center"></h5>
+            <p class="card-text">
+              Temp: <span id="day3Temp"></span><br />Wind:
+              <span id="day3Wind"></span><br />Humidity:
+              <span id="day3Humidity"></span>
+            </p>
+          </div>
+        </div>
+        <div class="card col-2 text-bg-dark mx-1">
+          <div class="card-body">
+            <h5 id="day4Date" class="card-title text-center"></h5>
+            <p class="card-text">
+              Temp: <span id="day4Temp"></span><br />Wind:
+              <span id="day4Wind"></span><br />Humidity:
+              <span id="day4Humidity"></span>
+            </p>
+          </div>
+        </div>
+        <div class="card col-2 text-bg-dark mx-1">
+          <div class="card-body">
+            <h5 id="day5Date" class="card-title text-center"></h5>
+            <p class="card-text">
+              Temp: <span id="day5Temp"></span><br />Wind:
+              <span id="day5Wind"></span><br />Humidity:
+              <span id="day5Humidity"></span>
+            </p>
+          </div>
+        </div>
+      </article>
     </main>
     <!-- Links Bootstrap JS. -->
     <script
