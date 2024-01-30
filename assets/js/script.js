@@ -21,7 +21,7 @@ function fetchDisplayWeather() {
     return (
       response
         .json()
-        //Populates all HTML elements with data from created JSON file.
+        // Populates all HTML elements with data from created JSON file.
         .then(function (data) {
           $("#currentCity").text(data.name);
           var currentTempRounded = Math.round(data.main.temp);
@@ -63,12 +63,16 @@ function fetchDisplayForecast() {
     return (
       response
         .json()
-        //Populates all HTML elements with data from created JSON file.
+        // Populates all HTML elements with data from created JSON file.
+        // TODO: The free API I am using does not give daily averages, lows, or highs but rather 3 hour forecasts over 5 days. There is likely a better way to display the weather than only using the noon time slot.
+        // TODO: There is a probably a way to better follow DRY principles using a for loop for all 5 days, but there would be no need to add more days in the future so I left it.
         .then(function (data) {
+          // Adjusts the way the date is displayed.
           var date = new Date(data.list[4].dt_txt),
             month = date.getMonth() + 1,
             day = date.getDate(),
             day1Date = month + "/" + day;
+          // Appends an emoji to the date based on overall weather
           $("#day1Date").text(day1Date);
           if (data.list[4].weather[0].main === "Clouds") {
             $("#day1Date").append(" ☁️");
@@ -82,6 +86,7 @@ function fetchDisplayForecast() {
           if (data.list[4].weather[0].main === "Snow") {
             $("#day1Date").append(" ❄️");
           }
+          // Rounds the temp and wind speed to the nearest whole number and displays the temp, wind speed, and humidity with the correct symbols.
           var day1TempRounded = Math.round(data.list[4].main.temp);
           $("#day1Temp").text(day1TempRounded + "°F");
           var day1WindRounded = Math.round(data.list[4].wind.speed);
@@ -185,6 +190,7 @@ function fetchDisplayForecast() {
 }
 
 // Search button prepends user input to top of city list and fills out data on main.
+// TODO: It would be best to limit the number of cities in the list to 5 but due to them resetting on reload I left it alone.
 $("#searchBtn").on("click", function () {
   // Changes the variable city to the user input and populates the main data.
   city = $("#searchInput").val();
