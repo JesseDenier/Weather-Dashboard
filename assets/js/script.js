@@ -41,6 +41,10 @@ function fetchDisplayWeather() {
             $("main").css("background-image", "url(assets/imgs/Rain.jpeg)");
             $("main").css("background-size", "cover");
           }
+          if (data.weather[0].main === "Snow") {
+            $("main").css("background-image", "url(assets/imgs/Snow.jpeg)");
+            $("main").css("background-size", "cover");
+          }
         })
     );
   });
@@ -75,6 +79,9 @@ function fetchDisplayForecast() {
           if (data.list[4].weather[0].main === "Rain") {
             $("#day1Date").append(" 🌧️");
           }
+          if (data.list[4].weather[0].main === "Snow") {
+            $("#day1Date").append(" ❄️");
+          }
           var day1TempRounded = Math.round(data.list[4].main.temp);
           $("#day1Temp").text(day1TempRounded + "°F");
           var day1WindRounded = Math.round(data.list[4].wind.speed);
@@ -94,6 +101,9 @@ function fetchDisplayForecast() {
           }
           if (data.list[12].weather[0].main === "Rain") {
             $("#day2Date").append(" 🌧️");
+          }
+          if (data.list[12].weather[0].main === "Snow") {
+            $("#day2Date").append(" ❄️");
           }
           var day2TempRounded = Math.round(data.list[12].main.temp);
           $("#day2Temp").text(day2TempRounded + "°F");
@@ -115,6 +125,9 @@ function fetchDisplayForecast() {
           if (data.list[20].weather[0].main === "Rain") {
             $("#day3Date").append(" 🌧️");
           }
+          if (data.list[20].weather[0].main === "Snow") {
+            $("#day3Date").append(" ❄️");
+          }
           var day3TempRounded = Math.round(data.list[20].main.temp);
           $("#day3Temp").text(day3TempRounded + "°F");
           var day3WindRounded = Math.round(data.list[20].wind.speed);
@@ -135,6 +148,9 @@ function fetchDisplayForecast() {
           if (data.list[28].weather[0].main === "Rain") {
             $("#day4Date").append(" 🌧️");
           }
+          if (data.list[28].weather[0].main === "Snow") {
+            $("#day4Date").append(" ❄️");
+          }
           var day4TempRounded = Math.round(data.list[28].main.temp);
           $("#day4Temp").text(day4TempRounded + "°F");
           var day4WindRounded = Math.round(data.list[28].wind.speed);
@@ -154,6 +170,9 @@ function fetchDisplayForecast() {
           }
           if (data.list[36].weather[0].main === "Rain") {
             $("#day5Date").append(" 🌧️");
+          }
+          if (data.list[36].weather[0].main === "Snow") {
+            $("#day5Date").append(" ❄️");
           }
           var day5TempRounded = Math.round(data.list[36].main.temp);
           $("#day5Temp").text(day5TempRounded + "°F");
