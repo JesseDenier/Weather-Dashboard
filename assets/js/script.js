@@ -14,6 +14,10 @@ function fetchDisplayWeather() {
       "&units=imperial"
     // Creates a JSON file of the data.
   ).then(function (response) {
+    if (response.status != 200) {
+      alert("This city was not found in our database. Please try again.");
+      window.location.reload();
+    }
     return (
       response
         .json()
@@ -162,21 +166,25 @@ function fetchDisplayForecast() {
 }
 
 // Search button prepends user input to top of city list and fills out data on main.
-// TODO: Make it return an error if user input is not a city.
 $("#searchBtn").on("click", function () {
+  // Changes the variable city to the user input and populates the main data.
+  city = $("#searchInput").val();
+  fetchDisplayWeather();
+  fetchDisplayForecast();
+  // Creates a new list item based on the user input and prepends it to the city list.
   var newCity = $("<li></li>");
   newCity.text($("#searchInput").val());
-  newCity.addClass("list-group-item list-group-item-action");
+  newCity.addClass("list-group-item list-group-item-action cityItem");
   $("#cityList").prepend(newCity);
-  city = newCity.text();
-  console.log(city);
+});
+
+// When any city in the aside is clicked it changes the variable city to that list item and populates the main data.
+$("#cityList").on("click", ".cityItem", function () {
+  city = $.trim($(this).text());
   fetchDisplayWeather();
   fetchDisplayForecast();
 });
-//TODO: Limit list size to 10.
 
-//TODO: Make list items populate data on main.
-
-// Call the functions on page load.
+// Call the populate main data functions on page load.
 fetchDisplayWeather();
 fetchDisplayForecast();
