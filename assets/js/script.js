@@ -25,6 +25,18 @@ function fetchDisplayWeather() {
           var currentWindRounded = Math.round(data.wind.speed);
           $("#currentWind").text(currentWindRounded + " MPH");
           $("#currentHumidity").text(data.main.humidity + "%");
+          if (data.weather[0].main === "Clouds") {
+            $("main").css("background-image", "url(assets/imgs/Clear.jpeg)");
+            $("main").css("background-size", "cover");
+          }
+          if (data.weather[0].main === "Clear") {
+            $("main").css("background-image", "url(assets/imgs/Clear.jpeg)");
+            $("main").css("background-size", "cover");
+          }
+          if (data.weather[0].main === "Rain") {
+            $("main").css("background-image", "url(assets/imgs/Rain.jpeg)");
+            $("main").css("background-size", "cover");
+          }
         })
     );
   });
