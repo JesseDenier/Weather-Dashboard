@@ -1,8 +1,32 @@
 // Saves the randomly generated key supplied by Open Weather as a string variable.
 var openWeatherAPI = "2185ac83df543cf01fee31582244cc17";
 
-// Allows user inputs to be assigned to city and sets a default upon first open.
-var city = "Austin";
+// Creates an array that will hold the a default list of cities on first load.
+var cityArray = ["Austin", "New York City", "Denver"];
+
+// Creates an array based on a localStorage object that will be populated if the user has used the site before.
+var cityArrayStored = JSON.parse(localStorage.getItem("cityArrayStored"));
+
+// If the stored array has data in it then it sets cityArray to the stored Array.
+if (cityArrayStored !== null) {
+  cityArray = cityArrayStored;
+}
+
+// Allows user inputs to be assigned to city and sets the default to 1st in array.
+var city = cityArray[0];
+
+// Populates the City List with data in cityArray
+function cityArrayIntoCityList() {
+  // Deletes all HTML elements inside of cityList so I can populate it with the for loop.
+  $("#cityList").empty();
+  // Creates a new list item in city list for each item in cityArray.
+  for (i = 0; i < cityArray.length; i++) {
+    var newCity = $("<li></li>");
+    newCity.text(cityArray[i]);
+    newCity.addClass("list-group-item list-group-item-action cityItem");
+    $("#cityList").append(newCity);
+  }
+}
 
 // Fetches the Open Weather Weather API.
 function fetchDisplayWeather() {
@@ -14,8 +38,11 @@ function fetchDisplayWeather() {
       "&units=imperial"
     // Creates a JSON file of the data.
   ).then(function (response) {
+    // If the city the user entered doesn't exist it will alert them to this, remove the city from the array, and update the local storage array so they don't get stuck in the alert forever.
     if (response.status != 200) {
       alert("This city was not found in our database. Please try again.");
+      cityArray.shift();
+      localStorage.setItem("cityArrayStored", JSON.stringify(cityArray));
       window.location.reload();
     }
     return (
@@ -98,27 +125,47 @@ function fetchDisplayForecast() {
     });
 }
 
-// Search button prepends user input to top of city list and fills out data on main.
-// TODO: It would be best to limit the number of cities in the list to 5 but due to them resetting on reload I left it alone.
-$("#searchBtn").on("click", function () {
-  // Changes the variable city to the user input and populates the main data.
-  city = $("#searchInput").val();
-  fetchDisplayWeather();
-  fetchDisplayForecast();
-  // Creates a new list item based on the user input and prepends it to the city list.
-  var newCity = $("<li></li>");
-  newCity.text($("#searchInput").val());
-  newCity.addClass("list-group-item list-group-item-action cityItem");
-  $("#cityList").prepend(newCity);
-});
+// Adds the user input to the front of the cityArray and populates the main data.
+function addCitytoArray() {
+  cityArray.unshift($("#searchInput").val());
+  // Limits the cityArray to 10 total cities.
+  cityArray.splice(10);
+  // Saves the array to local storage.
+  localStorage.setItem("cityArrayStored", JSON.stringify(cityArray));
+  // Sets city to the newly created first input in cityArray.
+  city = cityArray[0];
+}
 
-// When any city in the aside is clicked it changes the variable city to that list item and populates the main data.
+// Takes the value specified on cityList click and removes it from the array and adds it to the front.
+function moveCitytoIndexZero(clickedCity) {
+  var clickedCityIndex = cityArray.indexOf(clickedCity);
+  if (clickedCityIndex !== 0) {
+    cityArray.splice(clickedCityIndex, 1);
+    cityArray.unshift(clickedCity);
+    localStorage.setItem("cityArrayStored", JSON.stringify(cityArray));
+  }
+  city = cityArray[0];
+}
+
+// Cities on aside move their city to the front of the array and then populates the HTML.
 $("#cityList").on("click", ".cityItem", function () {
-  city = $.trim($(this).text());
+  var clickedCity = $.trim($(this).text());
+  moveCitytoIndexZero(clickedCity);
+  // Calls HTML populating functions.
+  cityArrayIntoCityList();
   fetchDisplayWeather();
   fetchDisplayForecast();
 });
 
-// Call the populate main data functions on page load.
+// Search button adds user input to the array and then populates the HTML.
+$("#searchBtn").on("click", function () {
+  addCitytoArray();
+  cityArrayIntoCityList();
+  fetchDisplayWeather();
+  fetchDisplayForecast();
+});
+
+// Call HTML populating functions on page load.
+cityArrayIntoCityList();
 fetchDisplayWeather();
 fetchDisplayForecast();
